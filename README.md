@@ -148,7 +148,7 @@ Each cluster was annotated based on dotplot expression profiles.
 
 * * *
 
-# 7\. Statistical Validation of Clustering (Added)
+# 7\. Statistical Validation of Clustering 
 
 # 
 
