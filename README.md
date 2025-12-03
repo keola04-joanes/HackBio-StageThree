@@ -282,6 +282,55 @@ Result: Significant shift in pseudotime across infection stages.
 
 Basal → differentiating → ciliated/secretory → infected/stressed transitions were visible along pseudotime, reflecting epithelial progression and infection-induced remodeling.
 
+  
+
+**Methods Summary:**  
+This analysis used standard scRNA-seq workflows implemented in Scanpy, including quality control, normalization, dimensionality reduction (PCA, UMAP), Leiden clustering, and marker-based cell type annotation. Pseudotime was inferred using Diffusion Pseudotime (DPT) with basal cells as the biologically motivated root state. Statistical validation included silhouette scoring, Shannon diversity, and Kruskal–Wallis tests across infection stages. All plots and computational steps were performed in Python using AnnData structures for reproducibility.
+
+  
+
+## ACE2–Pseudotime Correlation and Study Limitations
+
+# 
+
+A crucial biological relationship in SARS-CoV-2 airway infection is the link between **ACE2 expression** and **pseudotime progression**. Although ACE2 marks viral entry potential, its expression dynamically changes across differentiation and infection states.
+
+### ACE2–Pseudotime Correlation
+
+# 
+
+*   Early pseudotime (Basal / progenitor states) typically shows **low ACE2**.
+    
+*   Intermediate luminal/secretory transitions may show **increasing ACE2 susceptibility**.
+    
+*   In late infection stages (2–3 dpi), ACE2 often becomes **strongly downregulated** or even **undetectable**, consistent with receptor internalization and viral-induced transcriptional shutdown.
+    
+*   When ACE2 is absent in 3 dpi data due to dropout or repression, this itself is biologically meaningful and reflects late-stage infection dynamics.
+    
+
+This relationship is essential for interpreting how differentiation trajectories interact with viral susceptibility.
+
+### Limitations and Alternative Explanations
+
+# 
+
+The results must be interpreted alongside known limitations of single‑cell RNA‑seq:
+
+1.  **Dropout Effects**  
+    Lowly expressed genes like ACE2 frequently drop out entirely in scRNA‑seq matrices. Absence of ACE2 in late infection does not imply biological impossibility—it may reflect technical sparsity.
+    
+2.  **Biological Variability**  
+    Infection heterogeneity, uneven viral load, and cell‑state plasticity can produce uneven ACE2 expression patterns across cells even within the same condition.
+    
+3.  **Gene Silencing in Late Infection**  
+    SARS‑CoV‑2 causes host‑transcription shutdown. Apparent loss of ACE2 in 3 dpi samples may reflect a real biological mechanism where infected cells downregulate the receptor to limit further viral entry.
+    
+4.  **Cluster Annotation Ambiguity**  
+    Overlap between intermediate/luminal/club‑like phenotypes means ACE2 distribution across clusters may not align perfectly with traditional epithelial classifications.
+    
+
+These factors must be considered when interpreting ACE2 trends, pseudotime trajectories, and susceptibility signatures.
+
 * * *
 
 #   
@@ -385,3 +434,13 @@ At 3 dpi, a single cluster shows the highest ACE2 abundance. This cluster:
 Cells in this ACE2-high cluster likely represent the epithelial subtype most actively interacting with the virus at this stage. High ACE2 expression suggests ongoing susceptibility, possible reinfection cycles, and significant epithelial remodeling or stress within this population.
 
 This aligns with known COVID-19 pathology where specific epithelial subtypes (often ciliated or secretory) remain major viral targets as infection progresses.
+
+  
+
+## Conclusion
+
+This scRNA-seq analysis successfully reconstructed the cellular landscape and infection trajectory of SARS-CoV-2–exposed human bronchial epithelial cells. Basal cells formed the root of differentiation, while ciliated and secretory populations showed strong infection-associated transcriptional reprogramming. ACE2 expression patterns revealed early susceptibility but late-stage downregulation, consistent with known viral entry and receptor internalization dynamics. Together, the clustering, pseudotime analysis, and ACE2/ENO2 evaluation provide a coherent biological narrative consistent with published SARS-CoV-2 infection models.
+
+##References
+
+Ravindra, N. G., Alfajaro, M. M., Gasque, V., Huston, N. C., Wan, H., Szigeti-Buck, K., Yasumoto, Y., Greaney, A. M., Habet, V., Chow, R. D., Chen, J. S., Wei, J., Filler, R. B., Wang, B., Wang, G., Niklason, L. E., Montgomery, R. R., Eisenbarth, S. C., Chen, S., . . . Wilen, C. B. (2021). Single-cell longitudinal analysis of SARS-CoV-2 infection in human airway epithelium identifies target cells, alterations in gene expression, and cell state changes. _PLoS Biology_, _19_(3), e3001143. https://doi.org/10.1371/journal.pbio.3001143
